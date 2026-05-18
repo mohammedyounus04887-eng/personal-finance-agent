@@ -2,7 +2,8 @@ import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from crewai import Agent, Task, Crew, Process, LLM
+from crewai import Agent, Task, Crew, Process
+from langchain_openai import ChatOpenAI
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -17,10 +18,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-llm = LLM(
-    model="openrouter/openai/gpt-4o-mini",
-    base_url="https://openrouter.ai/api/v1",
-    api_key=os.getenv("OPENAI_API_KEY"),
+llm = ChatOpenAI(
+    model="openai/gpt-4o-mini",
+    openai_api_base="https://openrouter.ai/api/v1",
+    openai_api_key=os.getenv("OPENAI_API_KEY"),
 )
 
 class FinanceRequest(BaseModel):
