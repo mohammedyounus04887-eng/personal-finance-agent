@@ -32,7 +32,7 @@ def run_finance_agent(income: str, expenses: str):
     expense_analyzer = Agent(
         role="Expense Analyzer",
         goal="Analyze income and expenses clearly",
-        backstory="You are a personal finance analyst.",
+        backstory="You are a personal finance analyst who studies spending patterns and identifies risky expenses.",
         verbose=True,
         llm=llm,
     )
@@ -40,7 +40,7 @@ def run_finance_agent(income: str, expenses: str):
     budget_planner = Agent(
         role="Budget Planner",
         goal="Create a practical monthly budget",
-        backstory="You help users create simple and realistic budgets.",
+        backstory="You help users create simple and realistic budgets using needs, wants, savings, and emergency funds.",
         verbose=True,
         llm=llm,
     )
@@ -48,7 +48,7 @@ def run_finance_agent(income: str, expenses: str):
     savings_advisor = Agent(
         role="Savings Advisor",
         goal="Suggest realistic ways to save more money",
-        backstory="You give practical money-saving advice.",
+        backstory="You give practical money-saving advice that is easy for beginners to follow.",
         verbose=True,
         llm=llm,
     )
@@ -56,7 +56,7 @@ def run_finance_agent(income: str, expenses: str):
     report_writer = Agent(
         role="Finance Report Writer",
         goal="Write a clean beginner-friendly finance report",
-        backstory="You convert financial analysis into a simple report.",
+        backstory="You convert financial analysis into a simple, structured monthly report.",
         verbose=True,
         llm=llm,
     )
@@ -77,7 +77,7 @@ Calculate:
 4. Risky spending areas
 5. Financial health summary
 """,
-        expected_output="A clear expense analysis with totals and comments.",
+        expected_output="A clear expense analysis with total expenses, remaining money, top categories, risky areas, and financial health comments.",
         agent=expense_analyzer,
     )
 
@@ -95,7 +95,7 @@ Use simple categories:
 
 Also use the 50/30/20 rule where suitable.
 """,
-        expected_output="A practical monthly budget with suggested amounts.",
+        expected_output="A practical monthly budget with suggested amounts for each category.",
         agent=budget_planner,
     )
 
@@ -112,7 +112,7 @@ Focus on:
 
 Give estimated savings where possible.
 """,
-        expected_output="A list of savings suggestions with estimated savings.",
+        expected_output="A list of practical savings suggestions with estimated monthly savings.",
         agent=savings_advisor,
     )
 
@@ -123,6 +123,7 @@ Create the final personal finance report.
 Include:
 - Monthly income
 - Total expenses
+- Remaining money
 - Current financial health
 - Budget plan
 - Savings suggestions
