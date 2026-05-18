@@ -18,10 +18,15 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+api_key = os.getenv("OPENAI_API_KEY")
+
+if not api_key:
+    raise ValueError("OPENAI_API_KEY is missing")
+
 llm = ChatOpenAI(
     model="openai/gpt-4o-mini",
     openai_api_base="https://openrouter.ai/api/v1",
-    openai_api_key=os.getenv("OPENAI_API_KEY"),
+    openai_api_key=api_key,
 )
 
 class FinanceRequest(BaseModel):
